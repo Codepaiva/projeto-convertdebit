@@ -1,5 +1,5 @@
 # 🚀 FastDebit
-![Status](https://img.shields.io/badge/status-refatotação-orange)
+![Status](https://img.shields.io/badge/status-refatorando-orange)
 
 FastDebit é uma aplicação desktop desenvolvida com Tkinter para agilizar a inserção dados na [Plataforma de Gestão de Dívidas](https://divida.apps.tcu.gov.br/calculadora-debito). Basicamente, o sistema converte automaticamente os dados do arquivo Excel para o formato esperado pela plataforma, reduzindo significativamente o tempo da operação e minimizando erros de digitação.
 
