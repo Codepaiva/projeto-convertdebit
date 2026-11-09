@@ -1,6 +1,6 @@
 from tkinter import Frame, Label, Button, StringVar, messagebox
-from service.search_file import SearchFileService
-from service.convert_file import ConvertService
+from services.search_file import SearchFileService
+from services.convert_file import ConvertService
 
 
 class Form:

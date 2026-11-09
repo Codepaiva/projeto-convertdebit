@@ -31,4 +31,6 @@ class ConvertService:
                     txt.write(f'Data{enum}={info["data"]}\n')
                     txt.write(f'Valor{enum}={info["valor"]}\n')
                     txt.write(f'Tipo{enum}={info['tipo']}\n')
-                    
+            
+        else:
+            return 'Arquivo não foi selecinado.'     
