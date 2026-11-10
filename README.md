@@ -69,7 +69,7 @@ Essa separação permite:
 
 ## Demonstração
 
-![Demonstração do Sistema](docs/demo1.gif)
+![Demonstração do Sistema](docs/demo.gif)
 
 ---
 
