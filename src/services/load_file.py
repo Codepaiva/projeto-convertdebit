@@ -1,21 +1,15 @@
-import re
 import pandas as pd
+import re
 
-
-
-# Construir trava para caso o usuário insira um arquivo com mais de 3 colunas ou menos que 3 colunas,
-# além disso verificar se existem celulas vaizas ou outro tipo de valor (data | float | texto).
-# A função deverá iterar sobre essas informações e checkar se eles estão no formato acima exemplificado.
 
 class LoadFileService:
     def load_excel_file(self, file_selected):
-        data_excel_file = pd.read_excel(file_selected, dtype=str, index_col=None, header=None).values
+        excel_file = pd.read_excel(file_selected, dtype=str, index_col=None, header=None).values
         
-        print(f'{data_excel_file}')
-        return data_excel_file
-    
-    
-    def check_value_data(self, row) -> str:
+        return excel_file
+
+
+    def check_date(self, row) -> str:
         
         # Seleciona o 1ª index da string
         row = row.split()[0]
@@ -37,7 +31,7 @@ class LoadFileService:
         return 'O campo "data" não é válido.'
     
     
-    def check_value_amount(self, row) -> str | None:
+    def check_value(self, row) -> str | None:
         # \D = qualquer caractere que não seja um dígito numérico
         # \d = qualquer caractere que seja um dígito numérico de 0 a 9
         amount = re.fullmatch(r'\d+|\d+[\.]\d+', row, flags=re.ASCII)
@@ -51,7 +45,7 @@ class LoadFileService:
             print('O valor não e válido.')
     
  
-    def check_value_type_debit_credit(self, row) -> str | None:
+    def check_type_value(self, row) -> str | None:
         type_value = re.fullmatch(r'[A-Z]', row)
         
         if type_value:
@@ -68,21 +62,18 @@ class LoadFileService:
             return 'A coluna "Tipo" não é válida.'
     
     
-    def get_data_excel_file(self, data) -> list[dict[str, str]] | None:
+    def get_data_verify(self, data) -> list[dict[str, str]] | None:
+        self.laod_file_service = LoadFileService() 
         content = []
         
-        for row in self.load_excel_file(data):
-            date = self.check_value_data(row[0])
-            value = self.check_value_amount(row[1])
-            type_debit_credit = self.check_value_type_debit_credit(row[2])
-        
-            data_debits = {
-                'data': date,
-                'valor': value,
-                'tipo': type_debit_credit,
+        print(f'{data}')
+        for row in self.laod_file_service.load_excel_file(data):
+            data = {
+                'data': self.check_date(row[0]),
+                'valor': self.check_value(row[1]),
+                'tipo': self.check_type_value(row[2]),
             }
             
-            content.append(data_debits)
+            content.append(data)
         
         return content
-        
